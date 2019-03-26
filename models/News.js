@@ -1,12 +1,13 @@
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
+const moment=require('moment');
 
 const newsSchema=new Schema({
-    headarticle:{
+    title:{
         type:String,
         required:true
     },
-    bodyarticle:{
+    body:{
         type:String,
         required:true
     },
@@ -16,6 +17,7 @@ const newsSchema=new Schema({
     },
     date:{
         type:Date,
+        timestamps: true,
         default:Date.now
     }
 

@@ -1,0 +1,9 @@
+.contactform{
+  background-color: rgba(255, 255, 255,0.9);
+}
+form{
+  padding: 20px;
+}
+.button{
+  align-items: center;
+}

@@ -1,0 +1,245 @@
+
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark default-color ie-nav" [containerInside]="true">
+    <mdb-navbar-brand>
+        <a class="logo navbar-brand" href="#"><strong>ОСББ "Паладіна 18/30"</strong></a>
+    </mdb-navbar-brand>
+    <links>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item  waves-light" mdbWavesEffect>
+                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Головна <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item waves-light" mdbWavesEffect>
+                <a  [routerLink]="'/about'" routerLinkActive="active"  class="nav-link">Про будинок</a>
+            </li>
+            <li class="nav-item waves-light" mdbWavesEffect>
+                <a [routerLink]="'/contacty'" routerLinkActive="active" class="nav-link">Контакти</a>
+            </li>
+            <li class="nav-item dropdown" dropdown *ngIf="isUserAuthentificate">
+              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+              Управління сторінкою<span class="caret"></span></a>
+              <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'user'" routerLinkActive="active">Передати показники лічильників</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Аналітика споживання</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Замовити спеціаліста</a>
+                  <div class="divider dropdown-divider"></div>
+                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Голосування по питанням</a>
+              </div>
+          </li>
+          <li class="nav-item dropdown" dropdown *ngIf="isManagerAuthentificate">
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Меню правління<span class="caret"></span></a>
+            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Переглянути показники</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'news'" routerLinkActive="active">Додати новину</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Замовлені спеціалісти</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Фінансові питання</a>
+                <div class="divider dropdown-divider"></div>
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Питання для обговорення</a>
+            </div>
+        </li>
+
+        </ul>
+        <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item waves-light" mdbWavesEffect>
+                <a class="nav-link"><i class="fab fa-facebook-f"></i></a>
+            </li>
+            <li class="nav-item waves-light" mdbWavesEffect>
+                <a class="nav-link"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li class="nav-item waves-light" mdbWavesEffect>
+                <a class="nav-link"><i class="fab fa-instagram"></i></a>
+            </li>
+        </ul>
+        <div class="dropdown" mdbDropdown>
+
+          <button mdbDropdownToggle mdbBtn color="ins" size="sm" class="dropdown-toggle waves-light" type="button"
+            mdbWavesEffect>
+           Вхід
+          </button>
+
+
+          <div class="dropdown-menu dropdown">
+            <span class="dropdown-item" (click)="frame.show()" >Мешканці</span>
+            <span class="dropdown-item" (click)="manager.show()">Правління</span>
+          </div>
+        </div>
+        <mdb-icon fas icon="sign-out-alt" size="1x" color="ins" mdbBtn mdbWavesEffect role="button" type="button" (click)="logOut()"></mdb-icon>
+    </links>
+</mdb-navbar>
+
+
+<!--Логін для юзера-->
+<form [formGroup]="form1" (ngSubmit)="onSubmit()">
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Вхід в систему</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id="email" formControlName="email"  class="form-control"
+            mdbInput [ngClass]="{'invalid':form1.get('email').invalid && form1.get('email').touched}">
+          <label data-success="right" for="email">Ваш email</label>
+           <span class="text-danger helpet-text" *ngIf="form1.get('email').invalid && form1.get('email').touched" >
+              <span *ngIf="form1.get('email').errors['required']">Поле обов'язкове для заповнення</span>
+              <span *ngIf="form1.get('email').errors['email']">Невірний формат поля</span>
+          </span>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" id="password" formControlName="password"  class="form-control"
+            mdbInput [ngClass]="{'invalid':form1.get('password').invalid && form1.get('password').touched}">
+          <label  data-success="right" for="password">Пароль</label>
+          <span class="text-danger helpet-text" *ngIf="form1.get('password').invalid && form1.get('password').touched">
+                <span *ngIf="form1.get('password').errors['required']">Поле обовязкове для заповнення</span>
+                <span *ngIf="form1.get('password').errors['minlength'] ">Кількість символів не менше 6</span>
+          </span>
+        </div>
+        <div class="modal-footer display-footer">
+          <div class="options text-center text-md-right mt-1">
+            <p>Не зареєстровані?
+              <span (click)="reg.show()" (click)="frame.hide()" class="blue-text">Реєстрація</span>
+            </p>
+            <p>Забули
+              <a href="#" class="blue-text">Пароль?</a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn type="submit" color="default" class="waves-light" mdbWavesEffect [disabled]="form1.invalid || form1.disabled">Вхід</button>
+        <button type="button" mdbBtn color="info" outline="true" class="ml-auto" data-dismiss="modal"
+        (click)="frame.hide()" mdbWavesEffect>Закрити</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</form>
+<!--реэстрація для юзера-->
+<form [formGroup]="form2" (ngSubmit)="submit()">
+<div mdbModal #reg="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Реєстрація</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="reg.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-user prefix grey-text"></i>
+          <input type="text" id="name" class="form-control" formControlName="name"
+            mdbInput [ngClass]="{'invalid':form2.get('name').invalid && form2.get('name').touched}">
+          <label  data-success="right" for="name">Ім'я</label>
+          <span class="text-danger helpet-text"  *ngIf="form2.get('name').invalid && form2.get('name').touched">
+              <span *ngIf="form2.get('name').errors['required']">Поле обов'язкове для заповнення.</span>
+          </span>
+        </div>
+        <div class="md-form mb-5">
+          <i class="fas fa-sort-numeric-down prefix grey-text"></i>
+          <input type="text" id="flat" class="form-control" formControlName="flat"
+            mdbInput [ngClass]="{'invalid':form2.get('flat').invalid && form2.get('flat').toched}">
+          <label  data-success="right" for="flat">Номер квартири</label>
+          <span  class="text-danger helpet-text" *ngIf="form2.get('flat').invalid && form2.get('flat').touched">
+              <span *ngIf="form2.get('flat').errors['required']">Поле обов'язкове для заповнення.</span>
+              <span *ngIf="form2.get('flat').errors['pattern']">Не більше 3 цифр</span>
+          </span>
+        </div>
+
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id="email1" formControlName="email"  class="form-control"
+            mdbInput [ngClass]="{'invalid':form2.get('email').invalid && form2.get('email').touched}">
+          <label data-success="right" for="email1">Ваш email</label>
+           <span class="text-danger helpet-text" *ngIf="form2.get('email').invalid && form2.get('email').touched" >
+              <span *ngIf="form2.get('email').errors['required']">Поле обов'язкове для заповнення</span>
+              <span *ngIf="form2.get('email').errors['email']">Невірний формат поля</span>
+          </span>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" id="password1" formControlName="password"  class="form-control"
+            mdbInput [ngClass]="{'invalid':form2.get('password').invalid && form2.get('password').touched}">
+          <label  data-success="right" for="password1">Пароль</label>
+          <span class="text-danger helpet-text" *ngIf="form2.get('password').invalid && form2.get('password').touched">
+                <span *ngIf="form2.get('password').errors['required']">Поле обовязкове для заповнення</span>
+                <span *ngIf="form2.get('password').errors['minlength'] && form2.get('password').errors['minlength']['requiredLength'] ">Кількість символів не менше 6</span>
+          </span>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn type="submit" [disabled]="form2.invalid" (ngSubmit)="submit()" color="deep-orange" class="waves-light" mdbWavesEffect>Зареєструватися</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+<!--логін менеджера-->
+<form [formGroup]="form3" (ngSubmit)="submitmanager()">
+  <div mdbModal #manager="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">Вхід в систему</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="manager.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <input type="text" id="login" formControlName="login"  class="form-control"
+              mdbInput [ngClass]="{'invalid':form3.get('login').invalid && form3.get('login').touched}">
+            <label data-success="right" for="login">Логін</label>
+             <span class="text-danger helpet-text" *ngIf="form3.get('login').invalid && form3.get('login').touched" >
+                <span *ngIf="form3.get('login').errors['required']">Поле обов'язкове для заповнення</span>
+
+            </span>
+          </div>
+
+          <div class="md-form mb-4">
+            <i class="fas fa-lock prefix grey-text"></i>
+            <input type="password" id="passwordmanager" formControlName="password"  class="form-control"
+              mdbInput [ngClass]="{'invalid':form3.get('password').invalid && form3.get('password').touched}">
+            <label  data-success="right" for="passwordmanager">Пароль</label>
+            <span class="text-danger helpet-text" *ngIf="form3.get('password').invalid && form3.get('password').touched">
+                  <span *ngIf="form3.get('password').errors['required']">Поле обовязкове для заповнення</span>
+                  <span *ngIf="form3.get('password').errors['minlength'] ">Кількість символів не менше 6</span>
+            </span>
+          </div>
+          <div class="modal-footer display-footer">
+            <div class="options text-center text-md-right mt-1">
+              <p>Забули
+                <a href="#" class="blue-text">Пароль?</a>
+              </p>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button mdbBtn type="submit" color="default" class="waves-light" mdbWavesEffect [disabled]="form3.invalid || form2.disabled">Вхід</button>
+          <button type="button" mdbBtn color="info" outline="true" class="ml-auto" data-dismiss="modal"
+          (click)="manager.hide()" mdbWavesEffect>Закрити</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  </form>

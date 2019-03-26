@@ -6,9 +6,9 @@ const upload=require('../middleware/upload')
 
 
 router.get('/',passport.authenticate('jwt',{ session: false }), news.getAllNews);
-router.get('/:id',passport.authenticate('jwt',{ session: false }),news.getNewsById);
+router.get('/:id',passport.authenticate('jwt',{ session: false }),upload.single('image'), news.getNewsById);
 router.delete('/',passport.authenticate('jwt',{ session: false }), news.deleteAllNews);
 router.delete('/:id',passport.authenticate('jwt',{ session: false }), news.deleteNewsById);
-router.post('/',upload.single('image'), passport.authenticate('jwt',{ session: false }),news.createNews);
-router.patch('/:id',upload.single('image'),passport.authenticate('jwt',{ session: false }),news.updateNewsById);
+router.post('/',passport.authenticate('jwt',{ session: false }), upload.single('image'), news.createNews);
+router.patch('/:id',passport.authenticate('jwt',{ session: false }),upload.single('image'),news.updateNewsById);
 module.exports=router

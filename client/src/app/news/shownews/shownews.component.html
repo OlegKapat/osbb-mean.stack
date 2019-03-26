@@ -1,0 +1,12 @@
+<article>
+  <div class="list-group"  *ngFor="let new of newsarticle" >
+    <a  class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{new.title}}</h5>
+        <small>{{new.date | formatDate }}</small>
+      </div>
+      <p class="mb-1">{{new.body}}</p>
+      <small>Правління ОСББ.</small>
+    </a>
+  </div>
+  </article>

@@ -5,6 +5,7 @@ const bodyParser=require('body-parser');
 const cors=require('cors');
 const morgan=require('morgan');
 const passport=require('passport');
+const path = require('path');
 const authUserRoutes=require('./routes/user/auth');
 const authManagementRoutes=require('./routes/management/auth');
 const newsRoutes=require('./routes/news');
@@ -14,12 +15,9 @@ mongoose.connect(keys.mongoURI,{useCreateIndex: true, useNewUrlParser: true }).t
 catch(error=>console.log("Occured error",error));
 app.use(passport.initialize());
 require('./middleware/passport')(passport);
-
+app.use(express.static(path.join(__dirname,'public')));
 app.use(morgan('dev'));
-app.use(cors());
-app.use(express.static('public'));
-app.use('/static', express.static(__dirname + '/public'));
-app.use('/public/img',express.static('public/img'))
+app.use(cors()); 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use('/api/userauth', authUserRoutes);

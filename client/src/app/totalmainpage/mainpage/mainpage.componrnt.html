@@ -1,0 +1,86 @@
+
+<div class="container-fluid">
+    <div class="row">
+       <div class="col">
+         <div >
+            <app-shownews *ngIf="isLogin; else empty" class="news"></app-shownews>
+        </div>
+         <ng-template  #empty>
+          <div class="spinner-grow" role="status">
+            <span class="sr-only">Очікування реєстрації....</span>
+          </div>
+         </ng-template>
+      </div>
+      <div class="col-6 ">
+             <!--Section: Features v.3-->
+   <section>
+
+     <!--Section heading-->
+     <h2 class="h1 py-5 font-weight-bold text-center ">Управління і введення обьекту нерухомості ОСББ</h2>
+     <!--Section description-->
+     <p class="px-5 mb-5 pb-3 lead black-text text-center">Єдина платформа для введення управління та обслуговувааня
+       будинкового комплексу співвласників багатоквартирного будинку. </p>
+
+     <!--Grid row-->
+     <div class="row pt-2">
+
+       <!--Grid column-->
+       <div class="col-lg-5 text-center text-lg-left">
+         <img src="../../../assets/img/Logo.jpg" alt="" class="img-fluid z-depth-0 animated rotateIn">
+       </div>
+       <!--Grid column-->
+
+       <!--Grid column-->
+       <div class="col-lg-7">
+
+         <!--Grid row-->
+         <div class="row pb-0">
+           <div class="col-2 col-md-1">
+             <i class="fa fa-reply fa-lg dark-text"></i>
+           </div>
+           <div class="col-10">
+             <h5 class="font-weight-bold text-left mb-3 text-white">Витрати</h5>
+             <p class="text-white text-left">Долучайтесь до групи та керуйте своїми витратами на утримання будинку та аналізуйте свої комунальні платежі. </p>
+           </div>
+         </div>
+         <!--Grid row-->
+
+         <!--Grid row-->
+         <div class="row pb-0">
+           <div class="col-2 col-md-1">
+             <i class="fa fa-reply fa-lg dark-text"></i>
+           </div>
+           <div class="col-10">
+             <h5 class="font-weight-bold text-left mb-3 text-white">Управління</h5>
+             <p class="white-text text-left">Додавайте ваші рекомендації що до покращення управління домогосподарством та приймайте участь в розвитку інфраструктури. </p>
+           </div>
+         </div>
+         <!--Grid row-->
+
+         <!--Grid row-->
+         <div class="row pb-1">
+           <div class="col-2 col-md-1">
+             <i class="fa fa-reply fa-lg dark-text"></i>
+           </div>
+           <div class="col-10">
+             <h5 class="font-weight-bold text-left mb-3 text-white">Зручність</h5>
+             <p class="white-text text-left">Робіть онлайн замовлення на виклик профільник спеціаліста з обслуговувааня будинку.</p>
+           </div>
+         </div>
+         <!--Grid row-->
+
+       </div>
+       <!--Grid column-->
+
+     </div>
+     <!--Grid row-->
+
+   </section>
+   <!--Section: Features v.3-->
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+   </div>
+

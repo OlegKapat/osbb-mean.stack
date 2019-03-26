@@ -26,7 +26,7 @@ module.exports.deleteAllNews= async function(req,res){
     try{
         await News.delete()
         res.status(200).json({
-            message:"Вси записи видалени"
+            message:"Вси записи видалені"
     })
     } catch(e){
         
@@ -45,11 +45,20 @@ module.exports.deleteNewsById = async function(req,res){
        
 }
 module.exports.updateNewsById= async function(req,res){
+    const updated={
+        title:req.body.title,
+        body:req.body.body
+    }
+    if(req.file)
+    {
+        updated.imageSrc=req.file.path;
+    }
     try{
+        debugger
         const news=await News.findOneAndUpdate(
-            {_id:req.params.id},// пошук по ключу що миняэмо
-            {$set:req.body},// записуэмо змини
-            {new:true}// пидтвержуэмо змини обновить запис в монгуси
+            {_id:req.params.id},// пошук по ключу що міняємо
+            {$set:req.body},// записуэмо зміни
+            {new:true}// підтвержуэмо зміни обновить запис в монгуси
         )
         res.status(200).json(news)
     } catch(e){
@@ -61,10 +70,10 @@ module.exports.createNews= async function(req,res){
    
     try{
         const news= await new News({
-            headarticle:req.body.headarticle,
-            bodyarticle:req.body.bodyarticle,
+            title:req.body.title,
+            body:req.body.body,
             imageSrc:req.file ? req.file.path :'' ,
-            date:moment().format('DDMMYYY') 
+            date:Date.now()
         }).save()
        
         res.status(201).json(news)

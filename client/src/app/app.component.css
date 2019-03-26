@@ -1,0 +1,10 @@
+body,html {
+  height: 100%;
+}
+.main{
+  background-image: url('../assets/img/palladina-1830.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}

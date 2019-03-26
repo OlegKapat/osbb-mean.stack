@@ -1,0 +1,11 @@
+.active{
+  background-color: rgb(43,200,173);
+}
+.dropdown{
+ margin-left: 40px;
+
+}
+.modal-footer{
+ justify-content: right;
+}
+

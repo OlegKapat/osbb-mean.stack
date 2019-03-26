@@ -1,0 +1,9 @@
+.first{
+  margin-top: 20px;
+}
+
+.font-weight-normal::first-letter{
+  font-family: "Times New Roman", Times, serif; /* Гарнитура шрифта первой буквы */
+    font-size: 150%; /* Размер шрифта первого символа */
+    color: red; /* Красный цвет текста */
+}

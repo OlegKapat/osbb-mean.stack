@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-6 col-md-6  headers">
+      <ul class="list-group list-group-flush item"   >
+        <a  class="list-group-item list-group-item-dark" *ngFor="let new of news"
+          [routerLink]="['/news/',new._id]"  >{{new.title}}
+           <small>Створено {{new.date | formatDate}} </small>
+          </a>
+
+      </ul>
+    </div>
+    <div class="  col-12 col-sm-6 col-md-6">
+         <app-addnews *ngIf="news.length==0; else empty"></app-addnews>
+         
+         <ng-template #empty>
+          <router-outlet></router-outlet>
+         </ng-template>
+
+
+
+    </div>
+  </div>
+</div>

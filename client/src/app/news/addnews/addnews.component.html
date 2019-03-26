@@ -1,0 +1,51 @@
+
+<div class="form">
+<!-- Default horizontal form -->
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- Grid row -->
+    <div class="form-group row">
+      <!-- Default input -->
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Заголовок</label>
+      <div class="col-sm-10">
+        <input mdbInput type="text" class="form-control" id="inputEmail3" [ngClass]="{'invalid':form.get('title').invalid && form.get('title').touched}" formControlName="title" placeholder="Заголовок">
+      </div>
+      <span class="text-danger" *ngIf="form.get('title').invalid && form.get('title').touched">
+         <span *ngIf="form.get('title').errors['required']">Назва стат'ї обовязкова</span>
+      </span>
+    </div>
+    <!-- Grid row -->
+
+    <!-- Grid row -->
+    <div class="form-group row">
+      <!-- Default input -->
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Текст</label>
+      <div class="col-sm-10">
+        <textarea mdbInput type="text" class="form-control" id="inputPassword3" formControlName="body" placeholder="Текст" [ngClass]="{'invalid':form.get('body').invalid && form.get('body').touched}" ></textarea>
+      </div>
+      <span class="text-danger" *ngIf="form.get('body').invalid && form.get('body').touched">
+        <span *ngIf="form.get('body').errors['required']">Обов'язково для заповнення</span>
+      </span>
+    </div>
+    <!-- Grid row -->
+    <!-- Button upload-->
+    <div class="upload-btn-wrapper">
+      <button class="btnn" type="button" >Виберіть файл зображення</button>
+      <input type="file" name="myfile" (change)="onFileUpload($event)" />
+    </div>
+    <div class="mx-auto">
+      <img [src]="imagePrevie" class="rounded z-depth-1-half h200" *ngIf="imagePrevie" >
+    </div>
+    <!-- Grid row -->
+    <div class="form-group row">
+      <div class="col-sm-10 btn-group d-flex " role="group">
+        <button type="submit" #add (click)="onSubmit()"  class="btn btn-primary btn-sm" [disabled]="form.invalid">Зберегти</button>
+        <button type="button" (click)="reset()"  class="btn btn-primary btn-sm">Нова статья</button>
+        <button type="button" #update (click)="updateNews()"  class="btn btn-primary btn-sm">Коригувати</button>
+        <button type="button" #remove (click)=deleteNews()  class="btn btn-primary btn-sm">Видалити</button>
+      </div>
+    </div>
+    <!-- Grid row -->
+  </form>
+  <!-- Default horizontal form -->
+</div>
+
