@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { News } from 'src/app/totalmainpage/shared/interfaces';
 import { AuthService } from 'src/app/totalmainpage/shared/services/auth.service';
-import { NewsService } from 'src/app/totalmainpage/shared/services/news.services';
+import { NewsService } from 'src/app/totalmainpage/shared/services/news.services'
 
 @Component({
   selector: 'app-shownews',

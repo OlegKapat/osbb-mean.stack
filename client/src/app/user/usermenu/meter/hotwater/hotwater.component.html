@@ -1,0 +1,31 @@
+<section class="rgba-white-strong container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row">
+  <div class="col-12">
+     <h3 class="text-center"><span class="modal-title w-100 font-weight-bold ">Надати показники лічилька гарячої води</span></h3>
+     <div class="md-form">
+      <i class="fas fa-glass-whiskey prefix"></i>
+      <input mdbInput type="text" id="form1" class="form-control" formControlName="previous" [value]='firstdata'>
+      <label for="form1">Попередні показники {{lastDate| date:"dd.MM.yyyy"}}</label>
+    </div>
+    <div class="md-form">
+      <i class="fas fa-glass-whiskey prefix"></i>
+      <input mdbInput type="text" id="form2" class="form-control" formControlName="current"
+        [ngClass]="{'invalid':form.get('current').invalid && form.get('current').touched}"  [(ngModel)]="currentvalue">
+      <label for="form2">Поточні показники</label>
+
+      <span  class="text-danger helpet-text" *ngIf="form.get('current').invalid && form.get('current').touched">
+          <span *ngIf="form.get('current').errors['required']">Поле обов'язкове для заповнення.</span>
+          <span *ngIf="form.get('current').errors['pattern']">Не більше 6 цифр</span>
+      </span>
+    </div>
+    <div class="md-form">
+        <i class="fas fa-glass-whiskey prefix"></i>
+        <input mdbInput type="text" id="form3" class="form-control" (click)="getDiference()" formControlName="diference" [(ngModel)]="diference" >
+        <label for="form3">Різниця</label>
+      </div>
+  </div>
+  <button type="submit" [disabled]="form.invalid" mdbBtn color="primary" mdbWavesEffect>Надіслати</button>
+</div>
+</form>
+</section>

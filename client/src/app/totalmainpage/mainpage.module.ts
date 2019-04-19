@@ -18,7 +18,13 @@ import { NewsComponent } from '../news/news.component';
 import { AddnewsComponent } from '../news/addnews/addnews.component';
 import { ShownewsComponent } from '../news/shownews/shownews.component';
 import { DatePipe } from '../totalmainpage/shared/pipes/data.pipe';
-import { UsermenuComponent } from './usermenu/usermenu.component';
+import { UsermenuComponent } from '../user/usermenu/usermenu.component';
+import { HotwaterComponent } from '../user/usermenu/meter/hotwater/hotwater.component'
+import { CoolwaterComponent } from '../user/usermenu/meter/coolwater/coolwater.component';
+import { ElectricComponent } from '../user/usermenu/meter/electric/electric.component';
+import { HeatingComponent } from '../user/usermenu/meter/heating/heating.component';
+import { AnaliticaComponent } from '../user/usermenu/analitica/analitica.component';
+import { OrderformComponent } from '../user/usermenu/orderform/orderform.component';
 
 
 @NgModule({
@@ -31,8 +37,13 @@ import { UsermenuComponent } from './usermenu/usermenu.component';
                  AddnewsComponent,
                  ShownewsComponent,
                  DatePipe,
-                 UsermenuComponent
-
+                 UsermenuComponent,
+                 HotwaterComponent,
+                 CoolwaterComponent,
+                 ElectricComponent,
+                 HeatingComponent,
+                 AnaliticaComponent,
+                 OrderformComponent
 
                 ],
   imports:[MainRoutingModule,

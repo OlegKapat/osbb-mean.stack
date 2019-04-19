@@ -9,7 +9,6 @@ export class ToastService {
     this.setting()
   }
 Success(title:string, message?:string){
-  debugger
     toastr.success(title,message)
 }
 Warning(message:string,title?:string){
@@ -23,21 +22,21 @@ Info(message:string){
 }
 setting(){
   toastr.options = {
-    "closeButton": false,
-    "debug": false,
-    "newestOnTop": false,
-    "progressBar": false,
-    "positionClass": "toast-top-center",
-    "preventDuplicates": false,
-    "onclick": null,
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1000000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
+    'closeButton': false,
+    'debug': false,
+    'newestOnTop': false,
+    'progressBar': false,
+    'positionClass': 'toast-top-center',
+    'preventDuplicates': false,
+    'onclick': null,
+    'showDuration': '300',
+    'hideDuration': '1000',
+    'timeOut': '5000',
+    'extendedTimeOut': '1000000',
+    'showEasing': 'swing',
+    'hideEasing': 'linear',
+    'showMethod': 'fadeIn',
+    'hideMethod': 'fadeOut'
   }
 
 }

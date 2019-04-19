@@ -4,6 +4,7 @@
         <a class="logo navbar-brand" href="#"><strong>ОСББ "Паладіна 18/30"</strong></a>
     </mdb-navbar-brand>
     <links>
+
         <ul class="navbar-nav mr-auto">
             <li class="nav-item  waves-light" mdbWavesEffect>
                 <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Головна <span class="sr-only">(current)</span></a>
@@ -15,12 +16,12 @@
                 <a [routerLink]="'/contacty'" routerLinkActive="active" class="nav-link">Контакти</a>
             </li>
             <li class="nav-item dropdown" dropdown *ngIf="isUserAuthentificate">
-              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+              <a dropdownToggle mdbWavesEffect type="button"  class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
               Управління сторінкою<span class="caret"></span></a>
               <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'user'" routerLinkActive="active">Передати показники лічильників</a>
-                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Аналітика споживання</a>
-                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Замовити спеціаліста</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'/usermenu'" routerLinkActive="active">Передати показники лічильників</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'/analitica'" routerLinkActive="active">Аналітика споживання</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'/order'" routerLinkActive="active">Замовити спеціаліста</a>
                   <div class="divider dropdown-divider"></div>
                   <a class="dropdown-item waves-light" mdbWavesEffect href="#">Голосування по питанням</a>
               </div>
@@ -64,7 +65,11 @@
           </div>
         </div>
         <mdb-icon fas icon="sign-out-alt" size="1x" color="ins" mdbBtn mdbWavesEffect role="button" type="button" (click)="logOut()"></mdb-icon>
+          <div class="name">
+              <span >{{userName}}</span>
+          </div>
     </links>
+
 </mdb-navbar>
 
 
@@ -150,7 +155,7 @@
         <div class="md-form mb-5">
           <i class="fas fa-sort-numeric-down prefix grey-text"></i>
           <input type="text" id="flat" class="form-control" formControlName="flat"
-            mdbInput [ngClass]="{'invalid':form2.get('flat').invalid && form2.get('flat').toched}">
+            mdbInput [ngClass]="{'invalid':form2.get('flat').invalid && form2.get('flat').touched}">
           <label  data-success="right" for="flat">Номер квартири</label>
           <span  class="text-danger helpet-text" *ngIf="form2.get('flat').invalid && form2.get('flat').touched">
               <span *ngIf="form2.get('flat').errors['required']">Поле обов'язкове для заповнення.</span>

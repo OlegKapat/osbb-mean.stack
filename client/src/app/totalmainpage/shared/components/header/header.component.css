@@ -8,4 +8,9 @@
 .modal-footer{
  justify-content: right;
 }
-
+.name{
+  height: auto;
+  width: 30px;
+  margin-left: auto;
+  color: white;
+}

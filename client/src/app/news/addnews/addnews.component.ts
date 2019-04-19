@@ -54,7 +54,7 @@ export class AddnewsComponent implements OnInit,OnDestroy {
 
     }
 },error=>{
- this.toastServise.Info(error.error.message)
+ this.toastServise.Success(error.error.message)
 
 }
 )
@@ -75,7 +75,7 @@ onSubmit() {
       this.add.nativeElement.click=this.toastServise.Success(`Замітка \"${news.title}"\ створена`);
     }
   },error=>{
-    this.toastServise.Info(error.error.message);
+    this.toastServise.Success(error.error.message);
 
   }
   ), this.reset();
@@ -96,7 +96,7 @@ updateNews(){
   this.reset();
 }
 deleteNews(){
-this.aSub=this.newsservice.deleteNews(this.route.snapshot.params['id']).subscribe((response)=>{(response.message),this.remove.nativeElement.click=this.toastServise.Warning('Видалення вдале')});
+this.aSub=this.newsservice.deleteNews(this.route.snapshot.params['id']).subscribe((response)=>{(response.message),this.remove.nativeElement.click=this.toastServise.Success('Видалення вдале')});
 }
 
 }

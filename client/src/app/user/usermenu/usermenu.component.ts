@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-usermenu',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./usermenu.component.css']
 })
 export class UsermenuComponent implements OnInit {
-
-  constructor() { }
+  userId:string;
+  constructor(private router:Router) { }
 
   ngOnInit() {
+    this.getUserId()
+  }
+  getUserId(){
+    this.userId=localStorage.getItem('userId')
   }
 
 }

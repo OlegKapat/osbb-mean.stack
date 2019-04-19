@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { LoginUser, RegistrationUser, LoginManager } from '../interfaces';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
     providedIn:'root'
@@ -12,10 +12,14 @@ export class AuthService  {
 
     private token=null;
     private managertoken=null;
+    private userId;
+    private userName='';
 
-    login(user:LoginUser):Observable<{token:string}> {
-       return this.http.post<{token:string}>('/api/userauth/login',user).pipe(tap(({token})=>{
+    login(user:LoginUser):Observable<{token:string,userId:string,userName:string}> {
+       return this.http.post<{token:string, userId:string,userName:string}>('/api/userauth/login',user).pipe(tap(({token,userId,userName})=>{
           localStorage.setItem('auth-token',token)
+          localStorage.setItem('userId',userId)
+          sessionStorage.setItem('userName',userName)
           this.setToken(token)
        }))
     }
@@ -50,8 +54,22 @@ export class AuthService  {
     logOutForManager(){
       this.setTokenForManager(null);
       localStorage.clear();
+      sessionStorage.clear();
     }
     register(registeruser:RegistrationUser):Observable<RegistrationUser>{
-      return this.http.post<RegistrationUser>('/api/userauth/register', registeruser)
+      return this.http.post<RegistrationUser>('/api/userauth/register', registeruser).pipe(catchError(error=>{
+        return throwError(error);
+      }))
+    }
+    getAuthId(){
+      if(this.token){
+       return this.userId
+      }
+      else{
+        console.log("Не зареестрований");
+      }
+    }
+    getName(){
+      return this.userName=sessionStorage.getItem('userName')
     }
  }

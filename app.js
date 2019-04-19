@@ -8,6 +8,11 @@ const passport=require('passport');
 const path = require('path');
 const authUserRoutes=require('./routes/user/auth');
 const authManagementRoutes=require('./routes/management/auth');
+const hotwaterRoutes=require('./routes/user/hotwater');
+const coolwaterRoutes=require('./routes/user/coolwater');
+const electricityRoutes=require('./routes/user/electric');
+const heatingRoutes=require('./routes/user/heating');
+const analiticsRouters=require('./routes/user/analitics');
 const newsRoutes=require('./routes/news');
 const keys=require('./config/keys')
 
@@ -23,5 +28,10 @@ app.use(bodyParser.json());
 app.use('/api/userauth', authUserRoutes);
 app.use('/api/managerauth', authManagementRoutes);
 app.use('/api/news',newsRoutes);
+app.use('/api/hotwater',hotwaterRoutes);
+app.use('/api/coolwater',coolwaterRoutes);
+app.use('/api/electricity',electricityRoutes);
+app.use('/api/centralheating',heatingRoutes);
+app.use('/api/analitica',analiticsRouters)
 
 module.exports=app;

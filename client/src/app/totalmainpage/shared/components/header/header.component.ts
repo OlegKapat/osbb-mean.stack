@@ -1,9 +1,10 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, } from '@angular/core';
 import { FormControl,Validators,FormGroup,FormBuilder} from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-
+import { Router, ActivatedRoute, Params,NavigationEnd,NavigationStart } from '@angular/router';
+import { ToastService } from '../../services/toast.service';
 import { AuthService } from '../../services/auth.service';
+
 
 
 @Component({
@@ -15,7 +16,8 @@ import { AuthService } from '../../services/auth.service';
 export class HeaderComponent implements OnInit,OnDestroy,AfterViewInit {
 
   constructor(private auth:AuthService, private router:Router,
-              private route:ActivatedRoute) { }
+              private route:ActivatedRoute,
+              private toast:ToastService) { }
 
   form1:FormGroup;
   form2:FormGroup;
@@ -25,6 +27,7 @@ export class HeaderComponent implements OnInit,OnDestroy,AfterViewInit {
   sub2:Subscription;
   isUserAuthentificate=false;
   isManagerAuthentificate=false;
+  userName:string='';
   ngOnInit() {
     this.form1=new FormGroup({
       email:new FormControl(null,[Validators.required,Validators.email]),
@@ -51,48 +54,60 @@ export class HeaderComponent implements OnInit,OnDestroy,AfterViewInit {
           // Потрібно авторезуватись
         }
      })
+     // реолад сторінки
+     this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+      };
+     this.router.events.subscribe((evt) => {
+      if (evt instanceof NavigationStart) {
+          this.router.navigated = true;
+          this.isUserAuthentificate=this.auth.isAuthenticated();
+          this.isManagerAuthentificate=this.auth.isAuthenticatedForManger();
+          this.userName= this.auth.getName();
+      }
+    })
 
   }
   ngAfterViewInit(){
 
-    this.isUserAuthentificate=this.auth.isAuthenticated();
-    this.isManagerAuthentificate=this.auth.isAuthenticatedForManger();
   }
   onSubmit() {
-
     const loginuser= {
       email:this.form1.value.email,
       password:this.form1.value.password
     }
-    this.sub=this.auth.login(loginuser).subscribe(()=>this.router.navigate(['/'],{
+    this.sub=this.auth.login(loginuser).subscribe(()=>{this.router.navigate(['/'],{
       queryParams:{
-        registered:true
+        registered:true,
       }
-    }),
+    })
+    this.toast.Success("Авторизація успішна")
+  },
     error=> {
-      console.warn(error);
+      this.toast.Success(`Помилка авторизації ${error.error.message}`)
       this.form1.enable();
     }
-
-    )
+  )
     this.form1.reset();
+
   }
   submitmanager(){
-
     const managerlogin={
       login:this.form3.value.login,
       password:this.form3.value.password
     }
-    this.sub2=this.auth.loginmanager(managerlogin).subscribe(()=>this.router.navigate(['/'],{
+    this.sub2=this.auth.loginmanager(managerlogin).subscribe(()=>{this.router.navigate(['/'],{
       queryParams:{
         registered:true
       }
-    })),
-    // tslint:disable-next-line:no-unused-expression
+    })
+    this.toast.Success("Авторизація успішна")
+  },
     error=>{
-      console.warn(error);
+      this.toast.Success(`Помилка авторизації ${error.error.message}`)
       this.form3.enable();
-    };
+    }
+    ),
     this.form3.reset();
   }
   submit(){
@@ -103,14 +118,17 @@ export class HeaderComponent implements OnInit,OnDestroy,AfterViewInit {
       email:this.form2.value.email,
       password:this.form2.value.password
     }
-   this.sub1= this.auth.register(registerform).subscribe(()=>{
-      //  this.router.navigate(['/'])
-       this.form2.reset();
-      console.log('Реєстрація пройшла вдало');
-
+   this.sub1= this.auth.register(registerform).subscribe((data)=>{
+     if(data){
+      this.router.navigate(['/'])
+      this.form2.reset();
+      this.toast.Success('Реєстрація вдала')
+     }
     },error=>{
-      console.warn(`Невдала реестрація ${error}`)
-      this.form2.enable();
+     this.toast.Success(`Невдала реестрація ${error.error.message}`)
+     this.form2.reset();
+     this.form2.enable();
+
 
     }
     )

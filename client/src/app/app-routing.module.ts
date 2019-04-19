@@ -1,6 +1,7 @@
 import { NgModule} from '@angular/core';
-import { RouterModule,Routes } from '@angular/router';
+import { RouterModule,Routes,PreloadingStrategy, PreloadAllModules } from '@angular/router';
 import { NotFoundComponent } from './totalmainpage/shared/components/404/notfound.component'
+import { CustomPreload } from './totalmainpage/shared/classes/custom.preload';// підключити пізніше
 
 
  const routes:Routes=[
@@ -9,7 +10,7 @@ import { NotFoundComponent } from './totalmainpage/shared/components/404/notfoun
 
  ]
 @NgModule({
-  imports:[RouterModule.forRoot(routes)],
+  imports:[RouterModule.forRoot(routes,{preloadingStrategy: PreloadAllModules})],
   exports:[RouterModule]
 })
 export class AppRoutingModule {}
