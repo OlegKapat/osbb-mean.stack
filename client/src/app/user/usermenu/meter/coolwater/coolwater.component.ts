@@ -3,8 +3,8 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ToastService } from 'src/app/totalmainpage/shared/services/toast.service';
 import { Meter } from 'src/app/user/shared/models/meter';
 import { CoolwaterService } from 'src/app/user/shared/services/coolwater.service';
-import { Subscription } from 'rxjs'
-import { Router, NavigationStart, NavigationEnd } from '@angular/router'
+import { Subscription } from 'rxjs';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 
 @Component({
@@ -33,6 +33,7 @@ export class CoolwaterComponent implements OnInit,AfterViewInit,OnDestroy {
     })
     if(this.firstdata === 0  || 'undefined' ){
       this.firstdata=0;
+      this.userId=localStorage.getItem('userId');
     }
 
   }
@@ -68,14 +69,14 @@ export class CoolwaterComponent implements OnInit,AfterViewInit,OnDestroy {
 
 }
 ngAfterViewInit(){
-      this.aSub = this.coolWaterService.getValue().subscribe(data=>{
-        this.databasevalue=data;
-        console.log(this.databasevalue);
+  console.log(this.userId);
 
+      this.aSub = this.coolWaterService.getValueByUserId(this.userId).subscribe(data=>{
+        this.databasevalue=data;
         window.setTimeout(() => {
-          let length=this.databasevalue.length;
-          this.firstdata=this.databasevalue[length-1]['current'];
-          this.lastDate=this.databasevalue[length-1]['date'];
+        let length=this.databasevalue.length;
+        this.firstdata=this.databasevalue[length-1]['current'];
+        this.lastDate=this.databasevalue[length-1]['date'];
         }, 1000);
 
       }),

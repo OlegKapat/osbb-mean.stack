@@ -148,5 +148,6 @@ export class HeaderComponent implements OnInit,OnDestroy,AfterViewInit {
   logOut(){
     this.auth.logOut();
     this.auth.logOutForManager();
+    this.router.navigate(['/'],{queryParams:{authefication:false}})
   }
 }

@@ -32,6 +32,7 @@ export class HeatingComponent implements OnInit,AfterViewInit,OnDestroy {
     })
     if(this.firstdata === 0  || 'undefined' ){
       this.firstdata=0;
+      this.userId=localStorage.getItem('userId');
     }
   }
   onSubmit(){
@@ -63,7 +64,7 @@ export class HeatingComponent implements OnInit,AfterViewInit,OnDestroy {
     }
     }
     ngAfterViewInit(){
-      this.aSub = this.heatingservice.getItems().subscribe(data=>{
+      this.aSub = this.heatingservice.getValueById(this.userId).subscribe(data=>{
         this.databasevalue=data;
         window.setTimeout(() => {
           let length=this.databasevalue.length;

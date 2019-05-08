@@ -54,12 +54,13 @@ module.exports.updateNewsById= async function(req,res){
         updated.imageSrc=req.file.path;
     }
     try{
-        debugger
+       
         const news=await News.findOneAndUpdate(
             {_id:req.params.id},// пошук по ключу що міняємо
             {$set:req.body},// записуэмо зміни
             {new:true}// підтвержуэмо зміни обновить запис в монгуси
         )
+        
         res.status(200).json(news)
     } catch(e){
         errorHandler(res,e)

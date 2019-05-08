@@ -7,7 +7,7 @@ const HotWater=require('../../models/user/hotwater');
 
 module.exports.analiticsHotwater= async function(req,res){
     try{
-        const allOrders=await HotWater.find(req.body.userId).sort({date:1});
+        const allOrders=await HotWater.find({userId:req.body.userId}).sort({date:1});
         if(allOrders){
             res.status(200).json(allOrders)
         }
@@ -19,7 +19,7 @@ module.exports.analiticsHotwater= async function(req,res){
 
 module.exports.analiticsCoolWater=async function(req,res){
     try{
-         const allData=await Coolwater.find(req.body.userId).sort({date:1});
+         const allData=await Coolwater.find({userId:req.body.userId}).sort({date:1});
          if(allData){
              res.status(200).json(allData)
          }   
@@ -31,7 +31,7 @@ module.exports.analiticsCoolWater=async function(req,res){
 
 module.exports.analiticaElectrica=async function(req,res){
     try{
-        const allData=await Electric.find(req.body.userId).sort({date:1})
+        const allData=await Electric.find({userId:req.body.userId}).sort({date:1})
     if(allData){
         res.status(200).json(allData)
        }
@@ -42,7 +42,7 @@ module.exports.analiticaElectrica=async function(req,res){
 }
 module.exports.analiticaHeating= async function(req,res){
     try{
-        const allData=await Heating.find(req.body.userId).sort({date:1})
+        const allData=await Heating.find({userId:req.body.userId}).sort({date:1})
         if(allData){
           res.status(200).json(allData)
         }

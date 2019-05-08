@@ -32,6 +32,7 @@ export class ElectricComponent implements OnInit,AfterViewInit,OnDestroy {
     })
     if(this.firstdata === 0  || 'undefined' ){
       this.firstdata=0;
+      this.userId=localStorage.getItem("userId")
     }
 
   }
@@ -65,7 +66,7 @@ export class ElectricComponent implements OnInit,AfterViewInit,OnDestroy {
     }
 }
 ngAfterViewInit(){
-  this.aSub = this.electricservice.getValue().subscribe(data=>{
+  this.aSub = this.electricservice.getValueById(this.userId).subscribe(data=>{
     this.databasevalue=data;
     window.setTimeout(() => {
       let length=this.databasevalue.length;

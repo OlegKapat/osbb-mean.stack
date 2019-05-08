@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './totalmainpage/shared/components/header/header.component';
 import { FooterComponent } from './totalmainpage/shared/components/footer/footer.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

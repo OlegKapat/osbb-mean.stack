@@ -4,7 +4,8 @@ const moment=require('moment')
 
 module.exports.getAlldata=async function (req,res) {
     try{
-        const coolwater= await CoolWater.find(req.body.userId)
+        const coolwater= await CoolWater.find({userId:req.body.userId}).sort({date:1})
+
         if(coolwater){
             res.status(200).json(coolwater)
         }

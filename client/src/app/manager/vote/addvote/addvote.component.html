@@ -1,0 +1,18 @@
+<section class="main">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h5>Додати нове питання для голосування</h5>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="md-form">
+            <input mdbInput type="text" id="form1" class="form-control" formControlName='title'>
+            <label for="form1" class="">Введіть назву питання</label>
+          </div>
+          <button mdbBtn type="submit" color="primary" mdbWavesEffect>Створити</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+

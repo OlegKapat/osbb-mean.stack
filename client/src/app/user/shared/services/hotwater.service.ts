@@ -12,9 +12,9 @@ export class HotWaterService{
 
   addItem(item:Meter):Observable<Meter>{
 
-    return this.http.post<Meter>('/api/hotwater',item)
+    return this.http.post<Meter>('/api/hotwater/add',item)
   }
-  getItems():Observable<Meter[]>{
-    return this.http.get<Meter[]>(`/api/hotwater`)
+  getValueById(userId):Observable<Meter[]>{
+    return this.http.post<Meter[]>(`/api/hotwater/get`,{userId:userId})
   }
 }

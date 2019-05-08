@@ -9,7 +9,6 @@ module.exports.login= async function(req,res){
       login:req.body.login
   })
   
-  
   if(candidate){
       // перевірка користувача
     const passwordResult=bcrypt.compareSync(req.body.password,candidate.password)

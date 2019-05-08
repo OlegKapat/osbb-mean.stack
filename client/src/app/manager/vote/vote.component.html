@@ -1,0 +1,17 @@
+<menu>
+  <div class="row">
+    <div class="col-md-3 menu-left rgba-grey-strong">
+        <h5>Питання для обговорення</h5>
+    <nav class="nav flex-column  lighten-3 py-4 mb-r font-weight-bold">
+      <a class="nav-link text-black-50"  [routerLink]="'addvoting'" routerLinkActive="active"> Створити нове</a>
+      <a class="nav-link active text-black-50" [routerLink]=""  routerLinkActive="active"> Перегляд всіх питань</a>
+      <a class="nav-link text-black-50" [routerLink]="" routerLinkActive="active" > Редагування та видалення</a>
+
+    </nav>
+
+    </div>
+    <div class="col-md-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</menu>

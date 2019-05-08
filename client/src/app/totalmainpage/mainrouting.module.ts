@@ -12,7 +12,10 @@ import { CoolwaterComponent } from '../user/usermenu/meter/coolwater/coolwater.c
 import { ElectricComponent } from '../user/usermenu/meter/electric/electric.component';
 import {HeatingComponent } from '../user/usermenu/meter/heating/heating.component'
 import { AnaliticaComponent } from '../user/usermenu/analitica/analitica.component';
-import { OrderformComponent  } from '../user/usermenu/orderform/orderform.component'
+import { OrderformComponent  } from '../user/usermenu/orderform/orderform.component';
+import { VoteComponent } from '../manager/vote/vote.component';
+import { AddvoteComponent } from '../manager/vote/addvote/addvote.component';
+import { VotingComponent } from '../user/usermenu/voting/voting.component';
 
 const route:Routes= [
   {path:'',component:MainComponent,children:[
@@ -29,7 +32,11 @@ const route:Routes= [
        {path:'centalheating',component:HeatingComponent },
      ]},
        {path:'analitica',component: AnaliticaComponent},
-       {path:'order',component:OrderformComponent }
+       {path:'order',component:OrderformComponent },
+       {path:'votingbyuser',component:VotingComponent},
+       {path:'voting',component:VoteComponent,children:[
+         {path:'addvoting',component:AddvoteComponent}
+       ]}
      ]}
 
 

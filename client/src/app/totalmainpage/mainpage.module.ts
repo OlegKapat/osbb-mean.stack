@@ -25,7 +25,9 @@ import { ElectricComponent } from '../user/usermenu/meter/electric/electric.comp
 import { HeatingComponent } from '../user/usermenu/meter/heating/heating.component';
 import { AnaliticaComponent } from '../user/usermenu/analitica/analitica.component';
 import { OrderformComponent } from '../user/usermenu/orderform/orderform.component';
-
+import { VoteComponent } from '../manager/vote/vote.component';
+import { AddvoteComponent } from '../manager/vote/addvote/addvote.component';
+import { VotingComponent } from '../user/usermenu/voting/voting.component';
 
 @NgModule({
   declarations:[MainComponent,
@@ -43,8 +45,10 @@ import { OrderformComponent } from '../user/usermenu/orderform/orderform.compone
                  ElectricComponent,
                  HeatingComponent,
                  AnaliticaComponent,
-                 OrderformComponent
-
+                 OrderformComponent,
+                 VoteComponent,
+                 AddvoteComponent,
+                 VotingComponent
                 ],
   imports:[MainRoutingModule,
           AngularFontAwesomeModule,

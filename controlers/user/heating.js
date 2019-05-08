@@ -4,7 +4,7 @@ const moment=require('moment');
 
 module.exports.getAll= async function(req,res){
     try{
-        const heating=await Heating.find(req.body.userId)
+        const heating=await Heating.find({userId:req.body.userId}).sort({date:1})
         if(heating){
             res.status(200).json(heating)
         }

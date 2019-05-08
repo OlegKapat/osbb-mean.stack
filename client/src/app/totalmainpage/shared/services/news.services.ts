@@ -31,7 +31,7 @@ export class NewsService {
       const formdata=new FormData();
       if(image){
          formdata.append('image', image, image.name)
-      }
+      } else
       formdata.append('title', title);
       formdata.append('body',body)
       return this.http.patch<News>(`/api/news/${id}`,formdata)

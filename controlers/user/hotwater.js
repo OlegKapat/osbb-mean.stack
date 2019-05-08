@@ -5,7 +5,7 @@ const moment=require('moment');
 
 module.exports.getAll=async function (req,res) {
     try{
-        const hotwater= await HotWater.find(req.body.userId)
+        const hotwater= await HotWater.find({userId:req.body.userId}).sort({date:1})
         if(hotwater){
             res.status(200).json(hotwater)
         }

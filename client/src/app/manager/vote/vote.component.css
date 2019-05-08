@@ -1,0 +1,21 @@
+.nav a.white-text:hover { color: #e0e0e0!important; }
+.nav a.dark-grey-text:hover { color: #fafcfd!important; }
+.nav a.text-black-50:hover{ color: #f0f5f4!important; }
+.row{
+min-height: 500px;
+}
+.menu-left{
+  border-right: 2px solid rgb(43, 42, 42);
+}
+h5{
+  color: white;
+  text-align: center;
+  margin-left: 10%;
+  margin-top:10%;
+}
+.mb-r{
+  margin-left: 10%;
+}
+*{
+  padding: 0;
+}

@@ -1,23 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/totalmainpage/shared/services/auth.service';
+import { Repair } from '../../shared/models/repear';
+
+import { Subscription } from 'rxjs';
+import { RepearorderService } from '../../shared/services/repearorder.service';
+import { ToastService } from 'src/app/totalmainpage/shared/services/toast.service';
 
 @Component({
   selector: 'app-orderform',
   templateUrl: './orderform.component.html',
   styleUrls: ['./orderform.component.css']
 })
-export class OrderformComponent implements OnInit {
-  orderstatus:true;
+export class OrderformComponent implements OnInit,OnDestroy {
+  orderstatus:boolean=true;
   textstatus:string;
   managerauth:boolean;
+  aSub:Subscription;
   form:FormGroup
-  constructor(private auth:AuthService) { }
+  constructor(private auth:AuthService, private orderforrepair:RepearorderService, private toastservise:ToastService) { }
 
   ngOnInit() {
-     this.textstatus=this.orderstatus ? "закрита" : "відкрита";
+     this.textstatus=this.orderstatus ? "відкрита" : "закрита";
      this.managerauth=this.auth.isAuthenticatedForManger();
-     console.log(this.managerauth);
 
      this.form=new FormGroup({
        name:new FormControl('',Validators.required),
@@ -25,11 +30,35 @@ export class OrderformComponent implements OnInit {
        phone:new FormControl('',Validators.required),
        specialist:new FormControl(''),
        description: new FormControl('',Validators.required),
-       cause: new FormControl(''),
-       status:new FormControl(true)
+       cause: new FormControl(),
+       status:new FormControl()
      })
   }
   onSubmit(){
+    const sendform:Repair={
+         name:this.form.value.name,
+         flat:this.form.value.flat,
+         phone:this.form.value.flat,
+         specialist:this.form.value.specialist,
+         description:this.form.value.description,
+         cause:'',
+         userId:localStorage.getItem('userId'),
+         date:Date.now(),
+         status:this.orderstatus
+    }
 
+      this.aSub=this.orderforrepair.addOrderForRepear(sendform).subscribe((data:Repair)=>{
+        if(data){
+            this.toastservise.Success("Заявка на виклик майстрера відправлена")
+        }
+      }),error=>{
+        this.toastservise.Success(`Помилка надсилання ${error.error.message} перевірте поля для заповнення`)
+      }
+      this.form.reset();
+  }
+  ngOnDestroy(){
+    if(this.aSub){
+      this.aSub.unsubscribe();
+    }
   }
 }

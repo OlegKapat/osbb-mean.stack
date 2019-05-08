@@ -25,14 +25,14 @@ module.exports.login= async function(req,res){
        else{
            // Пароли не совпадают
             res.status(401).json({
-                message:"Пароли не совпадают, повторите ввод"
+                message:"Паролі не свівпадають спробуйте знову"
             })
        }
    }
    else{
        // Добавляем пользователя, такого нет
        res.status(404).json({
-           message:"Пользователь с таким email не найден"
+           message:"Користувача з таким email не знайдено"
        })
    }
 }

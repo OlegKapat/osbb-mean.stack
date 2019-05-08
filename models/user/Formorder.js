@@ -16,7 +16,7 @@ const troubleSchema=new Schema({
         required:true
     },
     date:{
-        type:Date,
+        type:String,
         default:()=>moment().format("DD.MM.YYYY")
     },
     userId:{
@@ -37,4 +37,4 @@ const troubleSchema=new Schema({
     }
 
 })
-module.exports=mongoose.model('troubleorder',troubleSchema)
+module.exports=mongoose.model('trouble',troubleSchema)

@@ -38,6 +38,7 @@ aSub:Subscription;
   })
   if(this.firstdata === 0  || 'undefined' ){
     this.firstdata=0;
+    this.userId=localStorage.getItem('userId');
   }
   }
    onSubmit(){
@@ -71,7 +72,7 @@ aSub:Subscription;
       //   return this.getUser.getAuthId();
       // }
       ngAfterViewInit(){
-       this.aSub = this.hotWaterService.getItems().subscribe(data=>{
+       this.aSub = this.hotWaterService.getValueById(this.userId).subscribe(data=>{
           this.databasevalue=data;
           window.setTimeout(() => {
             let length=this.databasevalue.length;

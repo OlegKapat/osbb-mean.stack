@@ -12,10 +12,10 @@ export class HeatingService {
   constructor(private http:HttpClient) { }
 
   addItem(item:Meter):Observable<Meter>{
-    return this.http.post<Meter>('/api/centralheating',item)
+    return this.http.post<Meter>('/api/centralheating/add',item)
   }
-  getItems():Observable<Meter[]>{
-     return this.http.get<Meter[]>('/api/centralheating')
+  getValueById(userId):Observable<Meter[]>{
+     return this.http.post<Meter[]>('/api/centralheating/get',{userId:userId});
   }
 
 }

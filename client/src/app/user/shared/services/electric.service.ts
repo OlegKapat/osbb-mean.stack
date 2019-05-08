@@ -10,10 +10,10 @@ export class ElectricService {
 
   constructor(private http:HttpClient) { }
   addValue(item:Meter):Observable<Meter>{
-    return this.http.post<Meter>('/api/electricity',item)
+    return this.http.post<Meter>('/api/electricity/add',item)
   }
-  getValue():Observable<Meter[]>{
-  return this.http.get<Meter[]>(`/api/electricity`)
+  getValueById(userId):Observable<Meter[]>{
+  return this.http.post<Meter[]>(`/api/electricity/get`,{userId:userId})
   }
 
 }

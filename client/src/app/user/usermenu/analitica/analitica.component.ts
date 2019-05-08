@@ -33,6 +33,7 @@ export class AnaliticaComponent implements OnInit,AfterContentInit,OnDestroy {
   dataHeating:number[]=[];
   dateHeating:Date[]=[];
   aSub:Subscription;
+  userId:string;
 
   constructor(private analiticservice:AnaliticaService, private toastservice:ToastService) { }
 
@@ -44,7 +45,7 @@ export class AnaliticaComponent implements OnInit,AfterContentInit,OnDestroy {
         this.chartForHeating();
   }
   ngOnInit() {
-
+     this.userId=localStorage.getItem('userId');
   }
   ngOnDestroy(){
     if(this.aSub){
@@ -58,7 +59,7 @@ export class AnaliticaComponent implements OnInit,AfterContentInit,OnDestroy {
       color:'rgb(255,199,99)'
 
     }
-    this.aSub=this.analiticservice.getAnaliticsHotWater().subscribe((data:Meter[])=>{
+    this.aSub=this.analiticservice.getAnaliticsHotWater(this.userId).subscribe((data:Meter[])=>{
        this.totalDataHotWater=data
        for(let i=0; i < this.totalDataHotWater.length;i++){
             this.data.push(this.totalDataHotWater[i].diference)
@@ -78,7 +79,7 @@ export class AnaliticaComponent implements OnInit,AfterContentInit,OnDestroy {
       label:"Холодна вода",
       color:'rgb(255,199,99)'
     }
-   this.aSub= this.analiticservice.getAnaliticsCoolWater().subscribe((data:Meter[])=>{
+   this.aSub= this.analiticservice.getAnaliticsCoolWater(this.userId).subscribe((data:Meter[])=>{
         this.totalDataCoolWater=data
         for(let i=0; i<this.totalDataCoolWater.length;i++){
             this.dataCoolWater.push(this.totalDataCoolWater[i].diference);
@@ -99,7 +100,7 @@ export class AnaliticaComponent implements OnInit,AfterContentInit,OnDestroy {
       color:'rgb(255,199,99)'
 
     }
-    this.aSub=this.analiticservice.getAnaliticaElectrica().subscribe((data:Meter[])=>{
+    this.aSub=this.analiticservice.getAnaliticaElectrica(this.userId).subscribe((data:Meter[])=>{
        this.totalDataElectrica=data
        for(let i=0; i < this.totalDataElectrica.length;i++){
             this.dataElectrica.push(this.totalDataElectrica[i].diference)
@@ -120,7 +121,7 @@ export class AnaliticaComponent implements OnInit,AfterContentInit,OnDestroy {
       color:'rgb(255,199,99)'
 
     }
-    this.aSub=this.analiticservice.getAnaliticaHeating().subscribe((data:Meter[])=>{
+    this.aSub=this.analiticservice.getAnaliticaHeating(this.userId).subscribe((data:Meter[])=>{
        this.totalDataHeating=data
        for(let i=0; i < this.totalDataHeating.length;i++){
             this.dataHeating.push(this.totalDataHeating[i].diference)

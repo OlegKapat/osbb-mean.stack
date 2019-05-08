@@ -21,6 +21,7 @@ const coolwaterSchema= new Schema({
     },
     userId:{
         ref:'userauth',
-        type:Schema.Types.ObjectId}
+        type:Schema.Types.ObjectId
+    }
 })
 module.exports=mongoose.model('coolwater',coolwaterSchema);

@@ -4,7 +4,7 @@ const moment=require('moment');
 
 module.exports.getAlldata= async function(req,res){
         try{
-            const electricdata=await Electric.find(req.body.userId);
+            const electricdata=await Electric.find({userId:req.body.userId}).sort({date:1})
             if(electricdata){
                 res.status(200).json(electricdata)
             }

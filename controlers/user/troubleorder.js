@@ -1,4 +1,4 @@
-var Formorder=require('../../models/user/Formorder');
+var Formorder=require('../../models/user/formorder');
 var errorHandler=require('../../utils/errorHandler');
 var moment=require('moment');
 
@@ -11,12 +11,15 @@ module.exports.createOrder= async function(req,res){
             date:moment().format('DD.MM.YYYY'),
             userId:req.body.userId,
             description:req.body.description,
+            specialist:req.body.specialist,
             cause:req.body.cause,
             status:req.body.status
         }).save()
-        req.status(201).json(neworder)
+        res.status(201).json(neworder)
+      
+        
     }
     catch(e){
-        errorHandler(res,e)
+        errorHandler(res,`Невірний формат вводу ${e}`)
     }
 }

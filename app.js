@@ -12,7 +12,10 @@ const hotwaterRoutes=require('./routes/user/hotwater');
 const coolwaterRoutes=require('./routes/user/coolwater');
 const electricityRoutes=require('./routes/user/electric');
 const heatingRoutes=require('./routes/user/heating');
+const orderforrepairRoutes=require('./routes/user/orderforrepeir')
 const analiticsRouters=require('./routes/user/analitics');
+const voteRoutes=require('./routes/management/vote');
+const votingRoutes=require('./routes/user/voting')
 const newsRoutes=require('./routes/news');
 const keys=require('./config/keys')
 
@@ -32,6 +35,10 @@ app.use('/api/hotwater',hotwaterRoutes);
 app.use('/api/coolwater',coolwaterRoutes);
 app.use('/api/electricity',electricityRoutes);
 app.use('/api/centralheating',heatingRoutes);
-app.use('/api/analitica',analiticsRouters)
+app.use('/api/orderforrepair',orderforrepairRoutes)
+app.use('/api/analitica',analiticsRouters);
+app.use('/api/voting',votingRoutes);
+app.use('/api/vote',voteRoutes);
+
 
 module.exports=app;
