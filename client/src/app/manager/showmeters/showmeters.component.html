@@ -1,0 +1,120 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3 rgba-grey-strong section">
+     <section>
+      <table mdbTable>
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>Квартира</th>
+            <th>Власник</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr mdbTableCol *ngFor="let item of user; let i=index" (click)="showuserdata(item._id)">
+            <td>{{i+1}}</td>
+            <td>{{item.flat}}</td>
+            <td>{{item.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+     </section>
+
+    </div>
+    <div class="col-9">
+      <div class="row rgba-grey-strong">
+        <div class="col-5">
+            <h5>Показники холодної води</h5>
+            <table mdbTable>
+                <thead>
+                  <tr>
+                    <th>№ </th>
+                    <th> Дата</th>
+                    <th>Поточні </th>
+                    <th>Різниця </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr mdbTableCol *ngFor="let cool of coolwater; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{cool.date}}</td>
+                    <td>{{cool.current}}</td>
+                    <td>{{cool.diference}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="col-5">
+          <h5>Показники гарячої води</h5>
+            <table mdbTable>
+                <thead>
+                  <tr>
+                    <th>№ </th>
+                    <th> Дата</th>
+                    <th>Поточні </th>
+                    <th>Різниця </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr mdbTableCol *ngFor="let hot of hotwater; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{hot.date}}</td>
+                    <td>{{hot.current}}</td>
+                    <td>{{hot.diference}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+
+      </div>
+      <div class="row rgba-grey-strong">
+          <div class="col-5">
+              <h5>Показники лічильника опалення</h5>
+              <table mdbTable>
+                  <thead>
+                    <tr>
+                      <th>№ </th>
+                      <th> Дата</th>
+                      <th>Поточні </th>
+                      <th>Різниця </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr mdbTableCol *ngFor="let heat of heating; let i=index">
+                      <td>{{i+1}}</td>
+                      <td>{{heat.date}}</td>
+                      <td>{{heat.current}}</td>
+                      <td>{{heat.diference}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+          </div>
+          <div class="col-5">
+            <h5>Показники лічильника електрики</h5>
+              <table mdbTable>
+                  <thead>
+                    <tr>
+                      <th>№ </th>
+                      <th> Дата</th>
+                      <th>Поточні </th>
+                      <th>Різниця </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr mdbTableCol *ngFor="let elec of electric; let i=index">
+                      <td>{{i+1}}</td>
+                      <td>{{elec.date}}</td>
+                      <td>{{elec.current}}</td>
+                      <td>{{elec.diference}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+          </div>
+
+        </div>
+
+    </div>
+
+  </div>
+
+</div>

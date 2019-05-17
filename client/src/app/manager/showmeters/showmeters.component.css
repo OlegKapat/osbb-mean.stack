@@ -1,0 +1,10 @@
+
+th,td {
+  color:white
+}
+tr:hover{
+  border-bottom: 2px solid red;
+}
+.section{
+  border-right: 2px solid black;
+}

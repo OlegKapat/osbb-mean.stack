@@ -1,0 +1,25 @@
+<section class="main">
+    <div class="container">
+        <div class="row">
+          <div class="col-12">
+<table mdbTable>
+  <thead class="default-color white-text">
+    <tr>
+      <th scope="col">Номер </th>
+      <th scope="col">Питання для голосування </th>
+      <th scope="col">Кількість голосів </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let item of showvoter;let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{item.title}}</td>
+      <td>{{item.numbervote}}</td>
+
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>

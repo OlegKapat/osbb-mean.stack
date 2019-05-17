@@ -7,3 +7,6 @@ export interface Vote{
 export interface UserId{
   _id?:string
 }
+export interface Message{
+  message:string;
+}

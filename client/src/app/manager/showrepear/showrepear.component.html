@@ -1,0 +1,61 @@
+<div class=container-fluid>
+  <div class="row">
+    <div class="col-4 rgba-grey-strong section">
+        <table mdbTable>
+            <thead>
+              <tr>
+                <th>№ </th>
+                <th>Квартира </th>
+                <th>Причина</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr mdbTableCol *ngFor="let item of allRepair; let i=index"(click)="showtrouble(item._id)"[style.color]="item.status ? 'red': 'white'">
+
+                <td>{{i+1}}</td>
+                <td>{{item.flat}}</td>
+                <td>{{item.description}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="col-8 main">
+        <h5 class="card-header text-center font-weight-bold text-uppercase py-4">Форма замовлення на ремонт</h5>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="md-form">
+            <input mdbInput type="text" id="some" class="form-control" formControlName="name" [disabled] [ngModel]="name">
+            <label for="some" class="">Ім'я</label>
+        </div>
+        <div class="md-form">
+            <input mdbInput type="text" id="room" class="form-control" formControlName="flat" [ngModel]="flat">
+            <label for="room" class="">Квартира</label>
+        </div>
+        <div class="md-form">
+            <input mdbInput type="text" id="phone" class="form-control" formControlName="phone" [ngModel]="phone">
+            <label for="phone" class="">Телефон</label>
+        </div>
+        <div class="md-form">
+            <input mdbInput type="text" id="specialist" class="form-control" formControlName="specialist"[ngModel]="specialist">
+            <label for="specialist" class="">Спеціаліст</label>
+        </div>
+          <div class="md-form">
+            <textarea type="text" id="cause" class="md-textarea md-textarea-auto form-control" mdbInput formControlName="description" [ngModel]="description"></textarea>
+            <label for="cause">Причина виклику</label>
+          </div>
+          <div class="md-form" [style.display]="managerauth ? 'block' : 'none'" >
+              <textarea type="text" id="description" class="md-textarea md-textarea-auto form-control" mdbInput formControlName="cause"[ngModel]="cause"></textarea>
+              <label for="description">Опис виконаної роботи</label>
+            </div>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="status" checked formControlName="status" [ngModel]="status">
+                <label class="custom-control-label" for="status">Стан заявки {{textstatus}}</label>
+              </div>
+              <div class="divider dropdown-divider"></div>
+              <button mdbBtn type="submit" [disabled]="form.invalid" [style.display]="managerauth ? 'none' : 'block'" color="primary" mdbWavesEffect>Надіслати</button>
+              <button mdbBtn type="button"  color="success" (click)="saveresult()" mdbWavesEffect>Зберегти</button>
+        </form>
+    </div>
+
+  </div>
+
+</div>

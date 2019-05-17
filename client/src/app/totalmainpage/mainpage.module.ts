@@ -28,6 +28,10 @@ import { OrderformComponent } from '../user/usermenu/orderform/orderform.compone
 import { VoteComponent } from '../manager/vote/vote.component';
 import { AddvoteComponent } from '../manager/vote/addvote/addvote.component';
 import { VotingComponent } from '../user/usermenu/voting/voting.component';
+import { ShowvotesComponent } from '../manager/vote/showvotes/showvotes.component';
+import { EditvoteComponent } from '../manager/vote/editvote/editvote.component';
+import { ShowmetersComponent } from '../manager/showmeters/showmeters.component';
+import { ShowrepearComponent } from '../manager/showrepear/showrepear.component';
 
 @NgModule({
   declarations:[MainComponent,
@@ -48,7 +52,11 @@ import { VotingComponent } from '../user/usermenu/voting/voting.component';
                  OrderformComponent,
                  VoteComponent,
                  AddvoteComponent,
-                 VotingComponent
+                 VotingComponent,
+                 ShowvotesComponent,
+                 EditvoteComponent,
+                 ShowmetersComponent,
+                 ShowrepearComponent
                 ],
   imports:[MainRoutingModule,
           AngularFontAwesomeModule,

@@ -17,6 +17,7 @@ import { FooterComponent } from './totalmainpage/shared/components/footer/footer
     AppComponent,
     HeaderComponent,
     FooterComponent
+
   ],
   imports: [
     BrowserModule,

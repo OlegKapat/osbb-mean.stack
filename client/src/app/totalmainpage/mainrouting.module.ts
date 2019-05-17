@@ -16,6 +16,10 @@ import { OrderformComponent  } from '../user/usermenu/orderform/orderform.compon
 import { VoteComponent } from '../manager/vote/vote.component';
 import { AddvoteComponent } from '../manager/vote/addvote/addvote.component';
 import { VotingComponent } from '../user/usermenu/voting/voting.component';
+import { ShowvotesComponent } from '../manager/vote/showvotes/showvotes.component';
+import { EditvoteComponent } from '../manager/vote/editvote/editvote.component';
+import { ShowmetersComponent } from '../manager/showmeters/showmeters.component';
+import { ShowrepearComponent } from '../manager/showrepear/showrepear.component';
 
 const route:Routes= [
   {path:'',component:MainComponent,children:[
@@ -35,8 +39,12 @@ const route:Routes= [
        {path:'order',component:OrderformComponent },
        {path:'votingbyuser',component:VotingComponent},
        {path:'voting',component:VoteComponent,children:[
-         {path:'addvoting',component:AddvoteComponent}
-       ]}
+         {path:'addvoting',component:AddvoteComponent},
+         {path:'showvotes',component:ShowvotesComponent},
+         {path:'editvotes',component:EditvoteComponent}
+       ]},
+       {path:'showdata',component:ShowmetersComponent},
+       {path:'showtroubles',component:ShowrepearComponent}
      ]}
 
 

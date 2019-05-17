@@ -16,7 +16,6 @@ module.exports.update=async function(req,res){
                 {$set:{numbervote:req.body.numbervote,userId:req.body.arrayUsersId}},  
                 {new:true}
             ) 
-            console.log(req.url)
             res.status(200).json(voting);
     }
     catch(e){

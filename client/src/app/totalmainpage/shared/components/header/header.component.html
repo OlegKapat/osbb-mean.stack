@@ -30,9 +30,9 @@
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
             Меню правління<span class="caret"></span></a>
             <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Переглянути показники</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'/showdata'" routerLinkActive="active">Переглянути показники</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'/news'" routerLinkActive="active">Додати новину</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Замовлення на ремонт</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'/showtroubles'" routerLinkActive="active">Замовлення на ремонт</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect href="#">Фінансові питання</a>
                 <div class="divider dropdown-divider"></div>
                 <a class="dropdown-item waves-light" [routerLink]="'/voting'" routerLinkActive="active" mdbWavesEffect >Питання для обговорення</a>

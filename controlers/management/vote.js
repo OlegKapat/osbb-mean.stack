@@ -44,3 +44,30 @@ module.exports.getData= async function(req,res){
         errorHandler(res,e)
     }
 }
+module.exports.updateVote=async function(req,res){
+    try{
+       const updateVote=await Vote.findOneAndUpdate(
+            {_id:req.params.id},
+            {$set:{title:req.body.title}},
+            {new:true}
+       )
+       res.status(200).json(updateVote)
+      
+    }
+    catch(e){
+        errorHandler(res,e)
+    }
+}
+module.exports.deleteVote=async function(req,res){
+    try{
+        await Vote.findByIdAndDelete({_id:req.params.id})
+        res.status(200).json({
+            message:"Питання виделено"
+        })
+        
+    }
+    catch(e){
+        errorHandler(res,e)
+    }
+}
+

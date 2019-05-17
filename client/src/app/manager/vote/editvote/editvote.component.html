@@ -1,0 +1,37 @@
+<div class="card main">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Редагування питань для голосування</h3>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <span class="table-add float-right mb-3 mr-2">
+          <!-- <a class="text-success" (click)="add()">
+            <mdb-icon fas icon="plus" size="2x"></mdb-icon>
+          </a> -->
+        </span>
+        <table class="table table-bordered table-responsive-md table-striped text-center">
+          <tr>
+            <th class="text-center">Номер</th>
+            <th class="text-center">Питання на голосуванні</th>
+            <th class="text-center">Кількість </th>
+            <th class="text-center">Видалити</th>
+          </tr>
+          <tr *ngFor="let item of showvoter; let id = index">
+            <td>
+              <span  contenteditable="true">{{id+1}}</span>
+            </td>
+            <td>
+              <span contenteditable="true" mdbTooltip="Після зміни нажміть 'Enter'" placement="top" (keyup.Enter)="changeValue(item._id, 'title', $event)" (blur)="updateList(item._id, 'title', $event)">{{item.title}}</span>
+            </td>
+            <td>
+              <span contenteditable="true" >{{item.numbervote}}</span>
+            </td>
+            <td>
+              <span class="table-remove">
+                <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(item._id)">Видалити</button>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+

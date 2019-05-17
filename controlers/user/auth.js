@@ -64,3 +64,19 @@ module.exports.register= async function(req,res){
        
    }
 }
+module.exports.getUsers= async function(req,res){
+    try{
+        const allusers=await Userauth.find().sort({flat:1})
+        if(allusers){
+            res.status(200).json(allusers)
+        }
+        else{
+          res.status(404).json({
+              message:"Данні відсутні"
+          })
+        }
+    }
+    catch(e){
+        errorHandler(res,e)
+    }
+}
