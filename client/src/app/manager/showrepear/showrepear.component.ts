@@ -52,7 +52,7 @@ showtrouble(id){
        this.status=status
 
     })
-    this.textstatus=this.status ? "закрита" : "відкрита";
+    this.textstatus=this.status ? "відкрита" : "закрита";
  }
  ngAfterViewInit(){
 

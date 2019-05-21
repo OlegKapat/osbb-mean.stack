@@ -23,15 +23,15 @@
         <h5 class="card-header text-center font-weight-bold text-uppercase py-4">Форма замовлення на ремонт</h5>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="md-form">
-            <input mdbInput type="text" id="some" class="form-control" formControlName="name" [disabled] [ngModel]="name">
+            <input mdbInput type="text" id="some" class="form-control" formControlName="name" disabled=managerauth [ngModel]="name">
             <label for="some" class="">Ім'я</label>
         </div>
         <div class="md-form">
-            <input mdbInput type="text" id="room" class="form-control" formControlName="flat" [ngModel]="flat">
+            <input mdbInput type="text" id="room" class="form-control" formControlName="flat" disabled=managerauth [ngModel]="flat">
             <label for="room" class="">Квартира</label>
         </div>
         <div class="md-form">
-            <input mdbInput type="text" id="phone" class="form-control" formControlName="phone" [ngModel]="phone">
+            <input mdbInput type="text" id="phone" class="form-control" formControlName="phone" disabled=managerauth [ngModel]="phone">
             <label for="phone" class="">Телефон</label>
         </div>
         <div class="md-form">
@@ -39,7 +39,7 @@
             <label for="specialist" class="">Спеціаліст</label>
         </div>
           <div class="md-form">
-            <textarea type="text" id="cause" class="md-textarea md-textarea-auto form-control" mdbInput formControlName="description" [ngModel]="description"></textarea>
+            <textarea type="text" id="cause" class="md-textarea md-textarea-auto form-control" disabled=managerauth mdbInput formControlName="description" [ngModel]="description"></textarea>
             <label for="cause">Причина виклику</label>
           </div>
           <div class="md-form" [style.display]="managerauth ? 'block' : 'none'" >

@@ -20,6 +20,7 @@ import { ShowvotesComponent } from '../manager/vote/showvotes/showvotes.componen
 import { EditvoteComponent } from '../manager/vote/editvote/editvote.component';
 import { ShowmetersComponent } from '../manager/showmeters/showmeters.component';
 import { ShowrepearComponent } from '../manager/showrepear/showrepear.component';
+import { FinancialComponent } from '../manager/financial/financial.component';
 
 const route:Routes= [
   {path:'',component:MainComponent,children:[
@@ -44,7 +45,8 @@ const route:Routes= [
          {path:'editvotes',component:EditvoteComponent}
        ]},
        {path:'showdata',component:ShowmetersComponent},
-       {path:'showtroubles',component:ShowrepearComponent}
+       {path:'showtroubles',component:ShowrepearComponent},
+       {path:'financial',component:FinancialComponent}
      ]}
 
 

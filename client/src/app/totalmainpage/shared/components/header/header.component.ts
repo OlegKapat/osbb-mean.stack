@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
 
 
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -25,9 +26,10 @@ export class HeaderComponent implements OnInit,OnDestroy,AfterViewInit {
   sub:Subscription;
   sub1:Subscription;
   sub2:Subscription;
-  isUserAuthentificate=false;
-  isManagerAuthentificate=false;
+  isUserAuthentificate:boolean;
+  isManagerAuthentificate:boolean;
   userName:string='';
+
   ngOnInit() {
     this.form1=new FormGroup({
       email:new FormControl(null,[Validators.required,Validators.email]),
@@ -45,7 +47,7 @@ export class HeaderComponent implements OnInit,OnDestroy,AfterViewInit {
       password:new FormControl(null, [Validators.required,Validators.minLength(6)])
     });
 
-     this.route.queryParams.subscribe((params:Params)=>{
+    this.sub= this.route.queryParams.subscribe((params:Params)=>{
         if(params['registered']){
           // Попадаэмо в систему під своїми данними
 
@@ -54,21 +56,25 @@ export class HeaderComponent implements OnInit,OnDestroy,AfterViewInit {
           // Потрібно авторезуватись
         }
      })
-     // реолад сторінки
-     this.router.routeReuseStrategy.shouldReuseRoute = function(){
-      return false;
-      };
-     this.router.events.subscribe((evt) => {
-      if (evt instanceof NavigationStart) {
-          this.router.navigated = true;
-          this.isUserAuthentificate=this.auth.isAuthenticated();
-          this.isManagerAuthentificate=this.auth.isAuthenticatedForManger();
-          this.userName= this.auth.getName();
-      }
-    })
+
 
   }
   ngAfterViewInit(){
+     this.sub=this.router.events.subscribe((evt) => {
+      if (evt instanceof NavigationStart) {
+           this.router.navigated = false;
+          this.userName= this.auth.getName();
+          this.isUserAuthentificate=this.auth.isAuthenticated();
+       }
+    else{
+         this.router.navigated=false;
+         this.isManagerAuthentificate=this.auth.isAuthenticatedForManger();
+      }
+     })
+     // реолад сторінки
+     this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      return false; // перегрузка основної сторінки
+      };
 
   }
   onSubmit() {
@@ -81,7 +87,9 @@ export class HeaderComponent implements OnInit,OnDestroy,AfterViewInit {
         registered:true,
       }
     })
+
     this.toast.Success("Авторизація успішна")
+
   },
     error=> {
       this.toast.Success(`Помилка авторизації ${error.error.message}`)
@@ -100,8 +108,14 @@ export class HeaderComponent implements OnInit,OnDestroy,AfterViewInit {
       queryParams:{
         registered:true
       }
+
     })
     this.toast.Success("Авторизація успішна")
+
+      // window.setTimeout(()=>{
+      //   window.location.reload();
+      // },2000)
+
   },
     error=>{
       this.toast.Success(`Помилка авторизації ${error.error.message}`)

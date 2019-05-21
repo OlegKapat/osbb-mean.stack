@@ -32,6 +32,9 @@ import { ShowvotesComponent } from '../manager/vote/showvotes/showvotes.componen
 import { EditvoteComponent } from '../manager/vote/editvote/editvote.component';
 import { ShowmetersComponent } from '../manager/showmeters/showmeters.component';
 import { ShowrepearComponent } from '../manager/showrepear/showrepear.component';
+import { FinancialComponent } from '../manager/financial/financial.component';
+
+
 
 @NgModule({
   declarations:[MainComponent,
@@ -56,17 +59,16 @@ import { ShowrepearComponent } from '../manager/showrepear/showrepear.component'
                  ShowvotesComponent,
                  EditvoteComponent,
                  ShowmetersComponent,
-                 ShowrepearComponent
+                 ShowrepearComponent,
+                 FinancialComponent
                 ],
   imports:[MainRoutingModule,
           AngularFontAwesomeModule,
           CommonModule,
           FormsModule,
-
           ReactiveFormsModule,
           BrowserAnimationsModule,
-          MDBBootstrapModule.forRoot(),
-
+          MDBBootstrapModule.forRoot()
         ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers:[ {provide:HTTP_INTERCEPTORS,multi:true,useClass:TokenInterseptor},

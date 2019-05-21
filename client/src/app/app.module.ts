@@ -10,6 +10,8 @@ import { MainModule } from './totalmainpage/mainpage.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './totalmainpage/shared/components/header/header.component';
 import { FooterComponent } from './totalmainpage/shared/components/footer/footer.component';
+import { FinantialModule } from './manager/financial/financial.module';
+
 
 
 @NgModule({
@@ -17,18 +19,19 @@ import { FooterComponent } from './totalmainpage/shared/components/footer/footer
     AppComponent,
     HeaderComponent,
     FooterComponent
-
   ],
   imports: [
     BrowserModule,
     MainModule,
+    FinantialModule,
     AppRoutingModule,
     ModalModule,
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MDBBootstrapModule.forRoot(),
+    MDBBootstrapModule.forRoot()
+
   ],
   providers: [],
   bootstrap: [AppComponent],

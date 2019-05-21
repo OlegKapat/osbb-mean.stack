@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3 rgba-grey-strong section">
+
+        <button class="btn" mdbBtn type="button" color="primary" mdbWavesEffect>вхід ОСББ онлайн</button>
+        <div>
+          <h5>Фінансові та нормативні документи</h5>
+        </div>
+        <hr class="">
+        <ul class="nav flex-column  lighten-4 py-4">
+            <li class="nav-item">
+                <a class="nav-link " [routerLink]="'/createosbb'" routerLinkActive="active" >Порядок створення ОСББ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="'/normativnieacti'" routerLinkActive="active">Нормативні акти ОСББ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Список членів правління ОСББ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#!">Типовий статут ОСББ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://interbuh.com.ua/ua/documents/oneanalytics/34822">Облік доходів і витрат в ОСББ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://i.factor.ua/ukr/journals/ms/2015/march/issue-3/article-6525.html">Доступ власника житла до інформації</a>
+        </li>
+        </ul>
+    </div>
+    <div class="col-9">
+        <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+</div>

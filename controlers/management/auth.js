@@ -15,13 +15,13 @@ module.exports.login= async function(req,res){
     
     if(passwordResult){
         // генерація токена паролі співпали
-        const token=jwt.sign({
+        const managertoken=jwt.sign({
             login:candidate.login,
             managerauthId:candidate._id
         }, keys.jwt,{expiresIn: 60 * 60})
 
         res.status(200).json({
-            token:`Bearer ${token}`
+            managertoken:`Bearer ${managertoken}`
         })
 
     }else{

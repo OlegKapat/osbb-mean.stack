@@ -17,7 +17,7 @@ export class OrderformComponent implements OnInit,OnDestroy {
   textstatus:string;
   managerauth:boolean;
   aSub:Subscription;
-  form:FormGroup
+  form:FormGroup;
   constructor(private auth:AuthService, private orderforrepair:RepearorderService, private toastservise:ToastService) { }
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class OrderformComponent implements OnInit,OnDestroy {
     const sendform:Repair={
          name:this.form.value.name,
          flat:this.form.value.flat,
-         phone:this.form.value.flat,
+         phone:this.form.value.phone,
          specialist:this.form.value.specialist,
          description:this.form.value.description,
          cause:'',
@@ -49,7 +49,7 @@ export class OrderformComponent implements OnInit,OnDestroy {
 
       this.aSub=this.orderforrepair.addOrderForRepear(sendform).subscribe((data:Repair)=>{
         if(data){
-            this.toastservise.Success("Заявка на виклик майстрера відправлена")
+            this.toastservise.Success("Заявка на виклик майстра відправлена")
         }
       }),error=>{
         this.toastservise.Success(`Помилка надсилання ${error.error.message} перевірте поля для заповнення`)

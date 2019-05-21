@@ -1,0 +1,20 @@
+.section{
+  border-right: 2px solid black;
+}
+.nav{
+  color:white;
+}
+h5{
+  color:white;
+  margin-top: 20px;
+}
+.btn{
+  margin-top: 20px;
+}
+.nav-item a{
+  color: white;
+}
+hr {
+  border: 1px solid red;
+  border-radius: 5px;
+}

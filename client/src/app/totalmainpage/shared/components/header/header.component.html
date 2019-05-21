@@ -15,34 +15,35 @@
             <li class="nav-item waves-light" mdbWavesEffect>
                 <a [routerLink]="'/contacty'" routerLinkActive="active" class="nav-link">Контакти</a>
             </li>
-            <li class="nav-item dropdown" dropdown *ngIf="isUserAuthentificate">
+            <ul *ngIf="isUserAuthentificate">
+            <li class="nav-item dropdown" dropdown >
               <a dropdownToggle mdbWavesEffect type="button"  class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
               Управління сторінкою<span class="caret"></span></a>
               <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
                   <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'/usermenu'" routerLinkActive="active">Передати показники лічильників</a>
                   <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'/analitica'" routerLinkActive="active">Аналітика споживання</a>
                   <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'/order'" routerLinkActive="active">Замовити спеціаліста</a>
-                  <div class="divider dropdown-divider"></div>
                   <a class="dropdown-item waves-light"[routerLink]="'/votingbyuser'" routerLinkActive="active" mdbWavesEffect >Голосування по питанням</a>
               </div>
           </li>
-          <li class="nav-item dropdown" dropdown *ngIf="isManagerAuthentificate">
+          </ul>
+          <ul *ngIf="isManagerAuthentificate">
+          <li class="nav-item dropdown" dropdown  >
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
             Меню правління<span class="caret"></span></a>
             <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
                 <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'/showdata'" routerLinkActive="active">Переглянути показники</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'/news'" routerLinkActive="active">Додати новину</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'/showtroubles'" routerLinkActive="active">Замовлення на ремонт</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Фінансові питання</a>
-                <div class="divider dropdown-divider"></div>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="'/financial'" routerLinkActive="active">Фінансові питання</a>
                 <a class="dropdown-item waves-light" [routerLink]="'/voting'" routerLinkActive="active" mdbWavesEffect >Питання для обговорення</a>
             </div>
         </li>
-
+          </ul>
         </ul>
         <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item waves-light" mdbWavesEffect>
-                <a class="nav-link"><i class="fab fa-facebook-f"></i></a>
+                <a class="nav-link" href="https://www.facebook.com/groups/2223154134576835/"><i class="fab fa-facebook-f"></i></a>
             </li>
             <li class="nav-item waves-light" mdbWavesEffect>
                 <a class="nav-link"><i class="fab fa-twitter"></i></a>
@@ -112,9 +113,9 @@
             <p>Не зареєстровані?
               <span (click)="reg.show()" (click)="frame.hide()" class="blue-text">Реєстрація</span>
             </p>
-            <p>Забули
+            <!-- <p>Забули
               <a href="#" class="blue-text">Пароль?</a>
-            </p>
+            </p> -->
           </div>
 
         </div>

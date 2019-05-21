@@ -23,10 +23,10 @@ export class AuthService  {
           this.setToken(token)
        }))
     }
-    loginmanager(user:LoginManager):Observable<{token:string}>{
-      return this.http.post<{token:string}>('/api/managerauth/login',user).pipe(tap(({token})=>{
-        localStorage.setItem('manager-token',token)
-        this.setToken(token);
+    loginmanager(user:LoginManager):Observable<{managertoken:string}>{
+      return this.http.post<{managertoken:string}>('/api/managerauth/login',user).pipe(tap(({managertoken})=>{
+        localStorage.setItem('manager-token',managertoken)
+        this.setTokenForManager(managertoken);
       }))
     }
     setToken(token:string){
@@ -62,7 +62,7 @@ export class AuthService  {
       }))
     }
     getAuthId(){
-      if(this.token){
+      if(this.token || this.managertoken){
        return this.userId
       }
       else{
